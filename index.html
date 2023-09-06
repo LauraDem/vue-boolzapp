@@ -25,6 +25,9 @@
     <!-- Custom style -->
     <link rel="stylesheet" href="style.css" />
 
+    <!-- LUXON -->
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.3/build/global/luxon.min.js"></script>
+
     <!-- Vue 3 -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
@@ -78,49 +81,17 @@
 
         <!-- CONTACTS LIST -->
         <ul class="contacts-list">
-          <li class="contact">
+            <!-- CONTACT V-FOR -->
+          <li class="contact" v-for="(contact,index) in contacts"
+            @click="setActiveContactIndex(index)"
+            >
+
             <div class="contact-pic">
-              <img src="./img/avatar_1.jpg" alt="" />
+              <img :src="contact.avatar" alt="" />
             </div>
 
             <div class="main-text">
-              <h3 class="main-text-upper">Michele</h3>
-              <h4 class="main-text-lower">Ultimo accesso oggi alle 12:00</h4>
-            </div>
-
-            <div class="time">12:00</div>
-          </li>
-          <li class="contact">
-            <div class="contact-pic">
-              <img src="./img/avatar_2.jpg" alt="" />
-            </div>
-
-            <div class="main-text">
-              <h3 class="main-text-upper">Michele</h3>
-              <h4 class="main-text-lower">Ultimo accesso oggi alle 12:00</h4>
-            </div>
-
-            <div class="time">12:00</div>
-          </li>
-          <li class="contact">
-            <div class="contact-pic">
-              <img src="./img/avatar_3.jpg" alt="" />
-            </div>
-
-            <div class="main-text">
-              <h3 class="main-text-upper">Michele</h3>
-              <h4 class="main-text-lower">Ultimo accesso oggi alle 12:00</h4>
-            </div>
-
-            <div class="time">12:00</div>
-          </li>
-          <li class="contact">
-            <div class="contact-pic">
-              <img src="./img/avatar_4.jpg" alt="" />
-            </div>
-
-            <div class="main-text">
-              <h3 class="main-text-upper">Michele</h3>
+              <h3 class="main-text-upper"> {{ index }} - {{ contact.name }} </h3>
               <h4 class="main-text-lower">Ultimo accesso oggi alle 12:00</h4>
             </div>
 
@@ -135,11 +106,11 @@
         <header class="col-header">
           <div class="user">
             <div class="user-pic">
-              <img src="./img/avatar_1.jpg" alt="" />
+              <img :src="contacts[activeContactIndex].avatar" alt="" />
             </div>
 
             <div class="main-text">
-              <h3 class="main-text-upper">Michele</h3>
+              <h3 class="main-text-upper"> {{ contacts[activeContactIndex].name }} </h3>
               <h4 class="main-text-lower">Ultimo accesso oggi alle 12:00</h4>
             </div>
           </div>
@@ -151,27 +122,39 @@
         </header>
 
         <section class="messages">
-          <div class="message sent">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia
-           
+          <div 
+          class="message"
+          :class="message.status"
+          v-for="message in contacts[activeContactIndex].messages">
+            {{ message.message }} 
+
+            <small> {{ timeToText(message.date) }} </small>
           </div>
-          <div class="message sent">
+
+          <!-- <div class="message sent">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia
           
           </div>
           <div class="message received">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia
           
-          </div>
+          </div> -->
         </section>
 
+        <!-- USER ACTIONS -->
         <footer class="user-actions">
           <div class="icons-container">
             <i class="fa-solid fa-face-smile"></i>
           </div>
 
+          <!-- MESSAGE BAR -->
           <div class="message-bar">
-            <input class="message-input" type="text" name="" id="" />
+            <input
+            class="message-input"
+            type="text"
+            v-model="newMessage.message"
+            @keyUp.enter="sendNewMessage()"
+             />
           </div>
 
           <div class="icons-container">
