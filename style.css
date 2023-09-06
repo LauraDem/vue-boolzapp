@@ -1,0 +1,297 @@
+:root {
+    /* # BACKGROUNDS */
+  
+    /* ## LINEAR GRADIENT BODY */
+    --primary-main-bg: #009688; /*            ? BG UPPER BODY                       */
+    --secondary-main-bg--start: #e3e1dc; /*   ? BG LOWER BODY                       */
+    --secondary-main-bg--end: #d1d7db; /*     ? BG LOWEST BODY                      */
+  
+    /* ## APP */
+    --low-contrast-bg: #eaeaea; /*            ? HEADER, FOOTER AND ACTIVE CONTACT   */
+    --lower-contrast-bg: #ffffff; /*          ? ALL CONTACTS                        */
+    --chat-bg: url('../img/mine.jpg'); /*       ? CHAT                                */
+  
+    /* ## MESSAGES */
+    --received-message-bg: #ffffff; /*        ? RECEIVED MESSAGES                   */
+    --sent-message-bg: #d9fdd3; /*            ? SENT MESSAGE                        */
+  
+    /* ## DISCLAIMER */
+    --disclaimer-main: #8edafc; /*            ? NOTIFICATION BAR BG, ICON COLOR     */
+    --disclaimer-low-contrast: #4f7485; /*    ? NOTIFICATION BAR LINK COLOR         */
+  
+    /* ## TEXTS */
+    --main-text: #111b21; /*                  ? ALL TEXTS                           */
+    --secondary-text: #54656f; /*             ? ICONS                               */
+    --low-contrast-text: #667781; /*          ? LATEST ACCESS AND MESSAGE           */
+  }
+  
+  /* # DEBUG */
+  
+  .debug {
+    border: 2px dashed red;
+    min-width: 150px;
+    min-height: 75px;
+  }
+  
+  /* # RESET */
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Lato', sans-serif;
+  
+    background-image: linear-gradient(
+      to bottom,
+      var(--primary-main-bg) 15vh,
+      var(--secondary-main-bg--start) 15vh,
+      var(--secondary-main-bg--end) 100vh
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    height: 100vh;
+  
+    color: var(--main-text);
+    font-weight: 400;
+  }
+  
+  a {
+    color: inherit;
+  }
+  
+  img {
+    max-width: 100%;
+    height: 100%;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  input {
+    padding: 0.25rem;
+  }
+  
+  /* # UTILS */
+  
+  .col-header {
+    padding: 0.75rem;
+    height: 75px;
+    background-color: var(--low-contrast-bg);
+  
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .col-contacts > .col-header {
+    border-right: 1px solid #d3d4d4;
+  }
+  
+  .main-text {
+    line-height: 1.25rem;
+  }
+  
+  .main-text > .main-text-upper {
+    font-size: 0.9rem;
+    line-height: 1.25rem;
+  }
+  
+  .main-text > .main-text-lower {
+    font-size: 0.75rem;
+    line-height: 1.25rem;
+    color: var(--low-contrast-text);
+    margin: 0;
+    font-weight: lighter;
+  }
+  
+  .user,
+  .contact {
+    display: flex;
+    align-items: center;
+  }
+  
+  .user > .user-pic,
+  .contact > .contact-pic {
+    overflow: hidden;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-right: 1rem;
+  }
+  
+  .icons-container {
+    display: flex;
+    align-items: center;
+    font-size: 1.25rem;
+  
+    color: var(--secondary-text);
+  }
+  
+  .icons-container > i {
+    display: inline-block;
+    margin: 0 0.5rem;
+  }
+  
+  /* # APP */
+  
+  .wrapper {
+    width: 80%;
+    min-width: 1000px;
+    height: 90vh;
+    min-height: 500px;
+  
+    display: flex;
+  }
+  
+  .col-contacts {
+    width: 30%;
+    background-color: var(--lower-contrast-bg);
+  }
+  
+  .disclaimer {
+    background-color: var(--disclaimer-main);
+    padding: 0.75rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .disclaimer > .icon-container {
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    width: 50px;
+    margin-right: 1rem;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    color: var(--disclaimer-main);
+    background-color: white;
+  }
+  
+  .disclaimer > .main-text > .main-text-lower {
+    font-size: 0.75rem;
+    line-height: 1.25rem;
+    color: var(--disclaimer-low-contrast);
+    margin: 0;
+  }
+  
+  .contact-search {
+    background-color: #ebeaea;
+    padding: 0.5rem;
+  }
+  
+  .search-container {
+    display: flex;
+    background-color: white;
+    border: 1px solid #d4d4d4;
+  }
+  
+  .search-icon {
+    width: 20%;
+    line-height: 30px;
+    text-align: center;
+    border-right: 1px solid #d4d4d4;
+  }
+  
+  .search-input {
+    width: 80%;
+    border: none;
+    padding: 0.2rem 0.5rem;
+  }
+  
+  .contacts-list {
+    overflow-y: auto;
+    max-height: calc(100% - 197px);
+  }
+  
+  .contacts-list > .contact {
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--low-contrast-bg);
+    cursor: pointer;
+  }
+  
+  .contacts-list > .contact.active,
+  .contacts-list > .contact:hover {
+    background-color: var(--low-contrast-bg);
+  }
+  
+  .contacts-list > .contact > .contact-pic {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .contacts-list > .contact > .time {
+    align-self: flex-start;
+    margin-left: auto;
+    color: var(--low-contrast-text);
+    font-size: 0.6rem;
+    padding: 0.6rem;
+  }
+  
+  .col-chat {
+    width: 70%;
+  
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .messages {
+    flex-grow: 1;
+  
+    background-image: var(--chat-bg);
+    padding: 0.5rem;
+  
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  
+    max-height: calc(100% - 152px);
+    overflow: auto;
+  
+    color: var(--);
+  }
+  
+  .messages > .message {
+    max-width: 60%;
+    border-radius: 5px;
+    padding: 0.5rem;
+    align-self: flex-start;
+  }
+  
+  .messages > .message.sent {
+    background-color: var(--sent-message-bg);
+  
+    align-self: flex-end;
+  }
+  
+  .messages > .message.received {
+    background-color: var(--received-message-bg);
+  }
+  
+  .user-actions {
+    display: flex;
+    padding: 0 1rem;
+    background-color: #f3eeea;
+  }
+  
+  .user-actions > .container-icons {
+    padding: 0.5rem;
+  }
+  
+  .message-bar {
+    flex-grow: 1;
+    padding: 1rem;
+  }
+  
+  .message-input {
+    width: 100%;
+    border: none;
+    padding: 1rem 0.5rem;
+    border: none;
+    border-radius: 0.5rem;
+  }
