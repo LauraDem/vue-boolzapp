@@ -75,23 +75,30 @@
             <div class="search-icon">
               <i class="fa-solid fa-magnifying-glass"></i>
             </div>
-            <input class="search-input" type="text" />
+            <input
+              v-model="searchTerm"
+              placeholder="Cerca contatto"
+              class="search-input"
+              type="text"
+            />
           </div>
         </div>
 
         <!-- CONTACTS LIST -->
         <ul class="contacts-list">
-            <!-- CONTACT V-FOR -->
-          <li class="contact" v-for="(contact,index) in contacts"
+          <!-- CONTACT V-FOR -->
+          <li
+            class="contact"
+            v-for="(contact,index) in filteredContacts()"
+            :key="index"
             @click="setActiveContactIndex(index)"
-            >
-
+          >
             <div class="contact-pic">
               <img :src="contact.avatar" alt="" />
             </div>
 
             <div class="main-text">
-              <h3 class="main-text-upper"> {{ index }} - {{ contact.name }} </h3>
+              <h3 class="main-text-upper">{{ index }} - {{ contact.name }}</h3>
               <h4 class="main-text-lower">Ultimo accesso oggi alle 12:00</h4>
             </div>
 
@@ -110,7 +117,9 @@
             </div>
 
             <div class="main-text">
-              <h3 class="main-text-upper"> {{ contacts[activeContactIndex].name }} </h3>
+              <h3 class="main-text-upper">
+                {{ contacts[activeContactIndex].name }}
+              </h3>
               <h4 class="main-text-lower">Ultimo accesso oggi alle 12:00</h4>
             </div>
           </div>
@@ -122,11 +131,12 @@
         </header>
 
         <section class="messages">
-          <div 
-          class="message"
-          :class="message.status"
-          v-for="message in contacts[activeContactIndex].messages">
-            {{ message.message }} 
+          <div
+            class="message"
+            :class="message.status"
+            v-for="message in contacts[activeContactIndex].messages"
+          >
+            {{ message.message }}
 
             <small> {{ timeToText(message.date) }} </small>
           </div>
@@ -150,11 +160,11 @@
           <!-- MESSAGE BAR -->
           <div class="message-bar">
             <input
-            class="message-input"
-            type="text"
-            v-model="newMessage.message"
-            @keyUp.enter="sendNewMessage()"
-             />
+              class="message-input"
+              type="text"
+              v-model="newMessage.message"
+              @keyUp.enter="sendNewMessage()"
+            />
           </div>
 
           <div class="icons-container">
